@@ -25,7 +25,6 @@ header {
   align-items: center;
   justify-content: space-between;
   height: 80px;
-  padding: 0 2rem;
   background-color: var(--mainColor);
   color: var(--textColor);
 }
@@ -39,6 +38,7 @@ header .nav-btn {
   color: var(--textColor);
   display: none;
   opacity: 0;
+  color: rgb(252, 248, 248);
 }
 
 @media only screen and ( max-width : 1024px ){

@@ -18,7 +18,8 @@ const Navbar = () => {
 	};
 
     return (
-        <header className='md:px-[100px]'>
+        <div className='bg-[#29335C]'>
+        <header className='md:w-[80%] m-auto'>
             <h2 className='text-[25px] font-[400]'>My Data</h2>
             <nav className='flex' ref={navRef}>
                 {
@@ -44,6 +45,7 @@ const Navbar = () => {
               <FaBars/>
             </button>
         </header>
+        </div>
     );
 };
 
