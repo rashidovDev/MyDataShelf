@@ -5,7 +5,7 @@ import File from './file/File'
 const FileList = () => {
 
   const files = useSelector(state => state.files.files)
-  console.log(files)
+  console.log("wdikw",files)
 
   return (
     <div>
