@@ -6,7 +6,6 @@ const PUSH_TO_STACK = "PUSH_TO_STACK"
 const DELETE_FILE = "DELETE_FILE" 
 const POP_TO_STACK = "POP_FROM_STACK"
 
-
 const defaultState = {
     files : [],
     currentDir : null,

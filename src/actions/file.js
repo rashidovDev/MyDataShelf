@@ -62,7 +62,6 @@ export function uploadFile(file,dirId) {
   }
 }
 
-
 export async function downloadFile(file) {
   const response = await fetch(`http://localhost:5000/api/files/download?id=${file._id}`,{
       headers: {

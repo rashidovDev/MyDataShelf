@@ -32,7 +32,9 @@ const File = ({files}) => {
   return (
     <div>
         <div 
-        onClick={()=> openDirHandler()}
+        onClick={()=> {
+          openDirHandler()
+        } }
         className='px-5 flex justify-between my-2 border-b-2 border-[#e2d8d8] cursor-pointer'>
             <div className='flex items-center'>
                 <div><img 
