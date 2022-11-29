@@ -1,24 +1,29 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { createDir, getFiles, uploadFile } from '../../actions/file'
-import { setCurrentDir, setPopupDisplay } from '../../reducers/fileReducer'
+import { createDir, getFiles, searchFiles, uploadFile} from '../../actions/file'
+import { showLoader } from '../../reducers/appReducer'
+import { setCurrentDir, setFileView, setPopupDisplay } from '../../reducers/fileReducer'
 import FileList from "../disk/fileList/FileList"
 import Popup from './Popup'
 import Uploader from './uploader/Uploader'
+import AppsIcon from '@mui/icons-material/Apps';
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 
 const Disk = () => {
 
   const dispatch = useDispatch()
   const currentDir = useSelector(state => state.files.currentDir)
   const dirStack = useSelector(state => state.files.dirStack)
+  const loader = useSelector(state => state.app.loader)
   const [dragEnter, setDragEnter] = useState(false)
-
-  console.log("drag:", dragEnter)
+  const [sort, setSort] = useState('type')
+  const [searchName, setSearchName] = useState('')
+  const [searchTimeOut, setSearchTimeOut] = useState(false)
 
   useEffect(() => {
-    dispatch(getFiles(currentDir))
-  },[currentDir])
+    dispatch(getFiles(currentDir, sort))
+  },[currentDir, sort])
 
   const showPopup = () => {
     dispatch(setPopupDisplay("flex"))
@@ -46,6 +51,14 @@ const Disk = () => {
     setDragEnter(false)
 }
 
+if(loader){
+  return (
+    <div className='flex justify-center items-center mt-56'>
+      <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+    </div>
+  )
+}
+
   const dropHandler = (e) => {
   e.preventDefault()
   e.stopPropagation()
@@ -60,7 +73,7 @@ const Disk = () => {
     onDragEnter={dragEnterHandler}
     onDragOver={dragEnterHandler}
     onDragLeave={dragLeaveHandler}
-     className='md:w-[80%] m-auto py-10 my-5  bg-[#faf8f8] rounded-[5px]'>
+     className='md:w-[80%] m-auto py-10 my-5 z-0 px-10 bg-[#faf8f8] rounded-[5px]'>
       <div>
         <button onClick={() => backClickHandler()}>Orqaga</button>
         <button onClick={() => showPopup()}>Papka yaratish</button>
@@ -68,6 +81,13 @@ const Disk = () => {
           <label className='cursor-pointer' htmlFor="disk__upload-input">Yuklash</label>
           <input multiple={true} onChange={(e) => fileUploadHandler(e)} className='cursor-pointer' type="file" id="disk__upload-input" placeholder='fjio'/>
         </div>
+        <select value={sort} onChange={(e) => setSort(e.target.value)} className='disk__select'>
+               <option value="name">Nomi bo'yicha</option>
+               <option value="type">Fayl turi bo'yicha </option>
+               <option value="date">Vaqt bo'yicha</option>
+        </select>
+        <button onClick={() => dispatch(setFileView('plate'))}><AppsIcon/></button>
+        <button onClick={() => dispatch(setFileView('list'))}><FormatListBulletedIcon/></button>
       </div>
       <FileList/>
       <Popup/>

@@ -1,7 +1,7 @@
 const SHOW_UPLOADER = 'SHOW_UPLOADER'
 const HIDE_UPLOADER = 'HIDE_UPLOADER'
 const ADD_UPLOAD_FILE = 'ADD_UPLOAD_FILE'
-const REMOVE_UPLOAD_FILE = 'REMOVE_UPLOAD_FILE'
+const REMOVE_UPLOAD_FILE  = 'REMOVE_UPLOAD_FILE'
 const CHANGE_UPLOAD_FILE = 'CHANGE_UPLOAD_FILE'
 
 const defaultState = {
@@ -20,7 +20,7 @@ export default function userReducer(state = defaultState, action) {
         case CHANGE_UPLOAD_FILE:
             return {
                 ...state,
-                files: [...state.files.map(file => file.id === action.payload.id
+                files: [...state.files.map(file =>  file.id === action.payload.id
                     ? {...file, progress: action.payload.progress}
                     : {...file}
                 )]
@@ -29,7 +29,6 @@ export default function userReducer(state = defaultState, action) {
             return state
     }
 }
-
 
 export const showUploader = () => ({type: SHOW_UPLOADER})
 export const hideUploader = () => ({type: HIDE_UPLOADER})

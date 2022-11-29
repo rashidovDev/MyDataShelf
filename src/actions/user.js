@@ -13,7 +13,6 @@ export const registration = async (email, password) => {
     }
 }
 
-
 export const login = (email, password) => {
     return async dispatch => {
         try{

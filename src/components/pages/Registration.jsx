@@ -5,30 +5,9 @@ import {Link} from "react-router-dom"
 import { registration } from '../../actions/user';
 
 const Registration = () => {
-
-
-const a = [
-  {
-    id : 1,
-    title : "wfjf",
-  },
-  {
-    id : 1,
-    title : "wfjf",
-  },
-  {
-    id : 1,
-    title : "wfjf",
-  },
-  {
-    id : 1,
-    title : "wfjf",
-  },
-]
    
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-
   console.log(email, password)
 
   return (
@@ -47,15 +26,7 @@ const a = [
             </div>
            
         </div>
-        <div className='text-[#111] pr-24 '>
-          {a.map(item => (
-               <div className={`${a.length - 1} bor pl-3 py-2`}>
-                <p>wdjkw</p>
-                <p>wjndkjw</p>
-                <p>kdnjkw</p>
-               </div>
-          ))}
-              
+        <div className='text-[#111] pr-24 '>     
         </div>
      </div>
   )
